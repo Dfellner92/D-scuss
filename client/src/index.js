@@ -3,28 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import login from "./login/login";
-import signup from "./signup/signup";
-import dashboard from "./dashboard/dashboard";
+import login from "./components/login/login";
+import signup from "./components/signup/signUp";
+import dashboard from "./components/dashboard/dashBoard";
 
 const firebase = require("firebase");
 require("firebase/firestore");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAAHLHdlmHHNMVDknw42M_7WBSESWbp2FY",
-  authDomain: "chat-app-dfellner.firebaseapp.com",
-  databaseURL: "https://chat-app-dfellner.firebaseio.com",
-  projectId: "chat-app-dfellner",
-  storageBucket: "chat-app-dfellner.appspot.com",
-  messagingSenderId: "294718292264",
-  appId: "1:294718292264:web:aec1ca4de5561606a7501d",
-  measurementId: "G-VSLZL2T3VB"
+  apiKey: "AIzaSyBR4Kqer9QUaWX2xCDkchRo2IcvT_s9sRU",
+  authDomain: "d-scuss-d57d1.firebaseapp.com",
+  databaseURL: "https://d-scuss-d57d1.firebaseio.com",
+  projectId: "d-scuss-d57d1",
+  storageBucket: "d-scuss-d57d1.appspot.com",
+  messagingSenderId: "533982431794",
+  appId: "1:533982431794:web:6ed3131b5d221f1900ca2b",
+  measurementId: "G-EDS1T47KL7"
 })
 
 const routing = (
   <Router>
     <div id="routing-container">
-      <Route path="/login" component={login}></Route>
+      <Route path="/" component={login}></Route>
       <Route path="/signup" component={signup}></Route>
       <Route path="/dashboard" component={dashboard}></Route>
     </div>

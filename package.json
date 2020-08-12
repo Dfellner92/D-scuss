@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Dfellner92/D-scuss#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.28"
   }
