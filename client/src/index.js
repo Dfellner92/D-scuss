@@ -6,6 +6,8 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import login from "./components/login/login";
 import signup from "./components/signup/signUp";
 import dashboard from "./components/dashboard/dashBoard";
+import Navbar from "./components/navbar/navBar";
+import Myprofile from "./components/my-profile/myProfile";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -23,10 +25,13 @@ firebase.initializeApp({
 
 const routing = (
   <Router>
+    
     <div id="routing-container">
-      <Route path="/" component={login}></Route>
-      <Route path="/signup" component={signup}></Route>
-      <Route path="/dashboard" component={dashboard}></Route>
+    <Navbar />
+      <Route exact path="/" component={dashboard}></Route>
+      <Route exact path="/signup" component={signup}></Route>
+      <Route exact path="/login" component={login}></Route>
+      <Route exact path="/myprofile" component={Myprofile}></Route>
     </div>
   </Router>
 );

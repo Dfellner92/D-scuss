@@ -9,6 +9,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import styles from "./styles";
+import API from "../../utils/API";
+
 const firebase = require("firebase");
 
 
@@ -28,8 +30,6 @@ class signup extends React.Component {
         const { classes } = this.props
 
         return (
-
-
 
             <main className={classes.main}>
                 <Paper className={classes.paper}>
@@ -63,6 +63,7 @@ class signup extends React.Component {
                     <Link className={classes.logInLink} to="/login">Login!</Link>
                 </Paper>
             </main>
+
         )
     }
 
@@ -100,23 +101,31 @@ class signup extends React.Component {
             .then(authRes => {
                 const userObj = {
                     email: authRes.user.email
-                };
-                firebase
-                    .firestore()
-                    .collection("users")
-                    .doc(this.state.email)
-                    .set(userObj)
-                    .then(() => {
-                        this.props.history.push("/dashboard")
-                    }, dbErr => {
-                        console.log('Failed to add user to the database: ', dbErr);
-                        this.setState({ signupError: 'Failed to add user' });
-                    });
-            }, authErr => {
-                console.log('Failed to create user: ', authErr);
-                this.setState({ signupError: 'Failed to add user' });
+                }
+                .setState({email : userObj});
+            
+                console.log(userObj);
+
+               
             });
-    };
+
+        //     authErr => {
+        //         console.log('Failed to create user: ', authErr);
+        //         this.setfState({ signupError: 'Failed to add user' });
+        // };
+
+        // firebase
+        //     .firestore()
+        //     .collection("users")
+        //     .doc(this.state.email)
+        //     .set(userObj)
+        //     .then(() => {
+        //         this.props.history.push("/dashboard")
+        //     }, dbErr => {
+        //         console.log('Failed to add user to the database: ', dbErr);
+        //         this.setState({ signupError: 'Failed to add user' });
+        //     });
+    }
 }
 
 export default withStyles(styles)(signup);
