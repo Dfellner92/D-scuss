@@ -8,12 +8,21 @@ import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
-
 import styles from "./styles";
+
+const firebase = require("firebase");
+
+
 
 
 class Navbar extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            yadayadayada: ""
+        };
+    }
 
     render() {
 
@@ -32,11 +41,21 @@ class Navbar extends React.Component {
                         <Button color="inherit">
                             <Link underline="none" color="inherit" href="/signUp">Sign Up</Link>
                         </Button>
+                        {/* {   
+                            this.state.serverError ?
+                            <Button color="inherit">
+                                <Link underline="none" color="inherit" onClick={this.signOut}>Sign Out</Link>
+                            </Button> :
+                            null
+                        } */}
                     </Toolbar>
                 </AppBar>
             </div>
         )
     }
+
+    signOut = () => firebase.auth().signOut();
+
 }
 
 export default withStyles(styles)(Navbar);

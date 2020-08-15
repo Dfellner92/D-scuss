@@ -31,7 +31,7 @@ const routing = (
       <Route exact path="/" component={dashboard}></Route>
       <Route exact path="/signup" component={signup}></Route>
       <Route exact path="/login" component={login}></Route>
-      <Route exact path="/Myprofile" component={Myprofile}></Route>
+      <Route exact path="/Myprofile/:id" component={Myprofile}></Route>
     </div>
   </Router>
 );
