@@ -6,6 +6,6 @@ const blogUserSchema = new Schema({
 });
 
 
-const blogUser = mongoose.model("blog user", blogUserSchema);
+const blogUsers = mongoose.model("blog user", blogUserSchema);
 
-module.exports = blogUser;
+module.exports = blogUsers;

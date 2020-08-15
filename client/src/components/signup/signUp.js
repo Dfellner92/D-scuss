@@ -22,9 +22,12 @@ class signup extends React.Component {
             email: null,
             password: null,
             passwordConfirmation: null,
-            signUpError: ''
+            signUpError: '',
+            signUpSuccessMessage: ''
         };
     }
+
+    
 
     render() {
         const { classes } = this.props
@@ -56,6 +59,13 @@ class signup extends React.Component {
                         this.state.signUpError ?
                             <Typography className={classes.errorText} component="h5" variant="h6">
                                 {this.state.signUpError}
+                            </Typography> :
+                            null
+                    }
+                    {
+                        this.state.signUpSuccessMessage ?
+                            <Typography className={classes.errorText} component="h5" variant="h6">
+                                {this.state.signUpSuccessMessage}
                             </Typography> :
                             null
                     }
@@ -96,36 +106,45 @@ class signup extends React.Component {
         }
 
         firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(authRes => {
-                const userObj = {
-                    email: authRes.user.email
-                }
-                .setState({email : userObj});
-            
-                console.log(userObj);
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(authRes => {
+        const userObj = {
+            email: authRes.user.email
+        }
+        console.log(userObj);
+        });
+                
+        API.saveUser({
+            email: this.state.email,
+            password: this.state.password
+        })
+        
+        this.setState({ signUpSuccessMessage: "successfully registered!"});
+        
+        this.props.history.push("/Myprofile");
+        
+        console.log(this.state.signUpSuccessMessage);
 
-               
-            });
+    }                
 
-        //     authErr => {
-        //         console.log('Failed to create user: ', authErr);
-        //         this.setfState({ signupError: 'Failed to add user' });
-        // };
-
-        // firebase
-        //     .firestore()
-        //     .collection("users")
-        //     .doc(this.state.email)
-        //     .set(userObj)
-        //     .then(() => {
-        //         this.props.history.push("/dashboard")
-        //     }, dbErr => {
-        //         console.log('Failed to add user to the database: ', dbErr);
-        //         this.setState({ signupError: 'Failed to add user' });
-        //     });
-    }
+    
 }
 
 export default withStyles(styles)(signup);
+    //     authErr => {
+    //         console.log('Failed to create user: ', authErr);
+    //         this.setfState({ signupError: 'Failed to add user' });
+    // };
+    
+    // firebase
+    //     .firestore()
+    //     .collection("users")
+    //     .doc(this.state.email)
+    //     .set(userObj)
+    //     .then(() => {
+    //         this.props.history.push("/dashboard")
+    //     }, dbErr => {
+    //         console.log('Failed to add user to the database: ', dbErr);
+    //         this.setState({ signupError: 'Failed to add user' });
+    //     });
