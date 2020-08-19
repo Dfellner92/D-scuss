@@ -9,6 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import styles from "./styles";
+import ModalForm from "../modal/modal"
 
 const firebase = require("firebase");
 
@@ -35,6 +36,7 @@ class Navbar extends React.Component {
                         <Typography variant="h6" className={classes.title}>
                             <Link underline="none" color="inherit" href="/">D'scuss</Link>
                         </Typography>
+                        <ModalForm></ModalForm>
                         { this.state.user ?
                         
                         <Button color="inherit">
