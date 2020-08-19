@@ -20,7 +20,7 @@ class Navbar extends React.Component {
     constructor() {
         super();
         this.state = {
-            yadayadayada: ""
+            user: null
         };
     }
 
@@ -35,12 +35,25 @@ class Navbar extends React.Component {
                         <Typography variant="h6" className={classes.title}>
                             <Link underline="none" color="inherit" href="/">D'scuss</Link>
                         </Typography>
+                        { this.state.user ?
+                        
                         <Button color="inherit">
-                            <Link underline="none" color="inherit" href="/login">Login</Link>
+                            <Link underline="none" color="inherit" href="/">Sign Out</Link>
                         </Button>
-                        <Button color="inherit">
-                            <Link underline="none" color="inherit" href="/signUp">Sign Up</Link>
-                        </Button>
+                       
+                       
+                          : 
+                          <div>
+                            
+                          <Button color="inherit">
+                              <Link underline="none" color="inherit" href="/login">Login</Link>
+                          </Button>
+                          <Button color="inherit">
+                              <Link underline="none" color="inherit" href="/signUp">Sign Up</Link>
+                          </Button>
+                          </div>
+                       
+                        }
                         {/* {   
                             this.state.serverError ?
                             <Button color="inherit">
