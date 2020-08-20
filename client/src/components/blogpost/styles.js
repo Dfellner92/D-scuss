@@ -14,8 +14,14 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 8,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        // alignItems: 'center',
         padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    },
+
+    button: {
+        '& > *': {
+            margin: theme.spacing(1),
+          }
     }
 
 });
