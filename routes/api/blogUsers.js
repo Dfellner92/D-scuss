@@ -15,6 +15,8 @@ router.route("/:email")
 //.get(booksController.findAll)
 .get(blogUsersController.findAll)
 .post(blogUsersController.create)
+
+router.route("/")
   
 
 

@@ -9,6 +9,9 @@ export default {
   getSavedBlogPosts: function(id) {
     return axios.get("/api/blogusers/"+ id);
   },
+  saveBlogPost: function(post, id) {
+    return axios.post("/api/blogPosts/" + id, post)
+  },
 //   // Deletes the book with the given id
 //   deleteBook: function(id) {
 //     return axios.delete("/api/books/" + id);

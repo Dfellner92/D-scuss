@@ -17,8 +17,9 @@ class Myprofile extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        console.log(id);
+        localStorage.setItem("id", id);
         this.getSavedBlogPosts(id);
+        this.props.getCurrentUserId(id);
     }
 
    
@@ -41,7 +42,6 @@ class Myprofile extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-                <div>hello from myprofile</div>
                 {this.state.blogPosts ? this.state.blogPosts.map(post =>
                     <BlogPost 
                         key={post._id} 

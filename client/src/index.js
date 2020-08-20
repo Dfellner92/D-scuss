@@ -23,15 +23,23 @@ firebase.initializeApp({
   measurementId: "G-EDS1T47KL7"
 })
 
+let userId;
+
+const getCurrentUserId = (id) => {
+  console.log(id);
+  userId = id;
+  console.log(userId);
+}
+
 const routing = (
   <Router>
     
     <div id="routing-container">
-    <Navbar />
+    <Navbar userId = {userId}/>
       <Route exact path="/" component={dashboard}></Route>
       <Route exact path="/signup" component={signup}></Route>
       <Route exact path="/login" component={login}></Route>
-      <Route exact path="/Myprofile/:id" component={Myprofile}></Route>
+      <Route render={props => <Myprofile {...props} getCurrentUserId={getCurrentUserId}/>} exact path="/Myprofile/:id"></Route>
     </div>
   </Router>
 );

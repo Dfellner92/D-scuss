@@ -19,7 +19,7 @@ class login extends React.Component {
     this.state = {
       email: null,
       password: null,
-      serverError: false
+      serverError: false,
     };
   }
 
@@ -81,6 +81,7 @@ class login extends React.Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         // this.props.history.push('/');
+        this.setState()
         window.location.href = "/Myprofile/" + this.state.email
       }, err => {
         this.setState({ serverError: true });

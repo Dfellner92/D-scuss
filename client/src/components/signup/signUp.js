@@ -116,15 +116,16 @@ class signup extends React.Component {
         });
                 
         API.saveUser({
-            email: this.state.email,
-            blogPosts: []
+            email: this.state.email
+        }).then(res => {
+
         })
-        
         this.setState({ signUpSuccessMessage: "successfully registered!"});
         
         this.props.history.push("/Myprofile/" + this.state.email);
         
         console.log(this.state.signUpSuccessMessage);
+        
 
     }                
 
