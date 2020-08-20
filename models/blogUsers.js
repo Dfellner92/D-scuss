@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const blogUserSchema = new Schema({
   email: { type: String, required: true},
-  blogPosts: { type: Object}
+  blogPosts: { type: Array }
 });
 
 

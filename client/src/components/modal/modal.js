@@ -5,11 +5,14 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import API from '../../utils/API';
 
 
-export default function ModalForm() {
+export default function ModalForm(props) {
   
   const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,20 +22,23 @@ export default function ModalForm() {
     setOpen(false);
   };
 
-
+  
 
 
   const submitPost = (event) => {
     event.preventDefault();
-    
-    const titleVal = document.getElementById('title').value
-    const descriptionVal = document.getElementById('description').value
-
-    
-    console.log("test from modal",titleVal);
-    
-
-};
+   
+    const id = localStorage.getItem("id")
+    console.log(id)
+    API.saveBlogPost({
+      title: title,
+      description: description
+    }, id).then(res => {
+      setTitle("")
+      setDescription("")
+      setOpen(false)
+    })
+ };
   
 
   return (
@@ -48,12 +54,16 @@ export default function ModalForm() {
             margin="dense"
             id="title"
             label="Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             fullWidth
           />
           <TextField
             margin="dense"
             id="description"
             label="Description"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
             fullWidth
             rows={6}
             multiline
