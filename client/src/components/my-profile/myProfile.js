@@ -18,6 +18,7 @@ class Myprofile extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         localStorage.setItem("id", id);
+        localStorage.setItem("loggedIn", "yes");
         this.getSavedBlogPosts(id);
         this.props.getCurrentUserId(id);
     }

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 //const booksController = require("../../controllers/booksController");
 const blogUsersController = require("../../controllers/blogUsersController");
+const blogPostsController = require("../../controllers/blogPostsController");
 
 // Matches with "/api/books"
 router.route("/")
@@ -15,6 +16,7 @@ router.route("/:email")
 //.get(booksController.findAll)
 .get(blogUsersController.findAll)
 .post(blogUsersController.create)
+.get(blogUsersController.findAndLogEmail)
 
 router.route("/")
   
