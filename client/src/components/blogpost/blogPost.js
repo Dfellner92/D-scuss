@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
+import API from "../../utils/API"
 
 // This file exports both the List and ListItem components
 
@@ -15,11 +16,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 class BlogPost extends React.Component {
   
+  handleDelete = (id) => {
+    API.getEmail(id);
+  }
 
   render() {
     
   const { classes } = this.props;
 
+  
 
   return (
     <div>
@@ -39,17 +44,17 @@ class BlogPost extends React.Component {
             <Button
                 variant="contained"
                 color="default"
+                //onClick={handleEdit}
                 className={classes.button}
                 startIcon={<EditIcon />}>
-                Edit
             </Button>
 
             <Button
                 variant="contained"
                 color="secondary"
+                onClick={this.handleDelete}
                 className={classes.button}
                 startIcon={<DeleteIcon />}>
-                Delete
             </Button>
             </div>
         </Paper>

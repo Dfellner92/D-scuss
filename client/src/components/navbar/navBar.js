@@ -21,9 +21,22 @@ class Navbar extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: null
+            loggedIn: "no"
         };
     }
+
+
+    componentDidMount = () => {
+        this.setState({ loggedIn: "yes" })
+    }
+
+    // updateNavbar = (userId) => {
+    //     this.setState({
+    //         user: userId
+    //     })
+    // }
+
+
 
     render() {
         console.log(this.props);
@@ -37,24 +50,20 @@ class Navbar extends React.Component {
                             <Link underline="none" color="inherit" href="/">D'scuss</Link>
                         </Typography>
                         <ModalForm></ModalForm>
-                        { this.state.user ?
-                        
-                        <Button color="inherit">
-                            <Link underline="none" color="inherit" href="/">Sign Out</Link>
-                        </Button>
-                       
-                       
-                          : 
-                          <div>
-                            
-                          <Button color="inherit">
-                              <Link underline="none" color="inherit" href="/login">Login</Link>
-                          </Button>
-                          <Button color="inherit">
-                              <Link underline="none" color="inherit" href="/signUp">Sign Up</Link>
-                          </Button>
-                          </div>
-                       
+                        {this.state.loggedIn === "no" ?
+                            <Button color="inherit">
+                                <Link underline="none" color="inherit" href="/" onClick={this.signOut}>Sign Out</Link>
+                            </Button>
+
+                            :
+                            <div>
+                                <Button color="inherit">
+                                    <Link underline="none" color="inherit" href="/login">Login</Link>
+                                </Button>
+                                <Button color="inherit">
+                                    <Link underline="none" color="inherit" href="/signUp">Sign Up</Link>
+                                </Button>
+                            </div>
                         }
                         {/* {   
                             this.state.serverError ?
@@ -69,7 +78,10 @@ class Navbar extends React.Component {
         )
     }
 
-    signOut = () => firebase.auth().signOut();
+    signOut = () => {
+        this.setState({ loggedIn: "no" })
+            .then(firebase.auth().signOut())
+    }
 
 }
 
