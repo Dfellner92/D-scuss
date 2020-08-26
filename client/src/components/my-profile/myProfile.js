@@ -10,8 +10,9 @@ class Myprofile extends React.Component {
     constructor(){
         super();
         this.state = {
-            test:"hi",
-            blogPosts: []
+            email:"",
+            blogPosts: [],
+            emailId: ""
         }
     }
 
@@ -29,11 +30,45 @@ class Myprofile extends React.Component {
         API.getSavedBlogPosts(id)
           .then(res => {
               console.log("DATA:", res.data)
+              this.setState({ email: id})
+              this.setState({ emailId: res.data[0]._id})
               this.setState({ blogPosts: res.data[0].blogPosts})
             }).catch(err => console.log(err));
 
         console.log(this.state.blogPosts)       
     };
+
+    handleDelete = blogId =>  {
+        //const filteredBlogPosts = this.state.blogPosts.filter(post => post._id !== id)
+        //this.setState({blogPosts : filteredBlogPosts});
+        console.log(blogId, this.state.emailId);
+
+        // if (this.state.blogPosts) {
+        //     this.state.blogPosts.map(
+        //         post => API.deletePost(this.state.email, blogId, this.state.emailId, post._id)
+        //     )} else {
+        //         return                
+        // }
+
+        API.deletePost(this.state.emailId, blogId, this.state.email).then(
+            //this.componentDidMount()
+        )
+
+        
+
+    }
+
+    // destructureBlogPosts = () => {
+    //     this.state.blogPosts.map(
+    //         post => {
+    //             post._id
+
+    //         })
+    //         .then()
+    //     )
+    // }
+
+
 
     render() {
         return(
@@ -48,8 +83,10 @@ class Myprofile extends React.Component {
                         key={post._id} 
                         title={post.title}
                         date={post.date}
-                        description={post.description}/>
-                   
+                        description={post.description}
+                        blogId={post._id}
+                        emailId={this.state.emailId}
+                        handleDelete={this.handleDelete}/>
                     ) : <p></p>
                 }
             </div>

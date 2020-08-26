@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = {
     findById: function(req, res) {
+      console.log("findById", req.params)
         db.blogUsers
           .findOne({email : req.params.id })
           .then(dbModel => res.json(dbModel))

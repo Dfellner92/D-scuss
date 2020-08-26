@@ -2,23 +2,25 @@ const router = require("express").Router();
 //const booksController = require("../../controllers/booksController");
 const blogUsersController = require("../../controllers/blogUsersController");
 const blogPostsController = require("../../controllers/blogPostsController");
+const blogUsersDeleteController = require("../../controllers/blogUsersDeleteController");
 
-// Matches with "/api/books"
+// Matches with "/api/blogUsers/"
 router.route("/")
   //.post(booksController.create)
   //.get(booksController.findAll)
   .get(blogUsersController.findAll)
   .post(blogUsersController.create)
   
-
+  
 router.route("/:email")
-//.post(booksController.create)
-//.get(booksController.findAll)
-.get(blogUsersController.findAll)
-.post(blogUsersController.create)
-.get(blogUsersController.findAndLogEmail)
-
-router.route("/")
+  //.post(booksController.create)
+  //.get(booksController.findAll)
+  .get(blogUsersController.findAll)
+  .post(blogUsersController.create)
+  
+  
+router.route("/:emailId/:blogId/:email")
+  .delete(blogUsersController.remove)
   
 
 
