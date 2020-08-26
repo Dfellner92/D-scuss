@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Blog");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Blog", {useFindAndModify: false});
 
 
 app.listen(PORT, () => {

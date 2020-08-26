@@ -15,10 +15,21 @@ import API from "../../utils/API"
 
 
 class BlogPost extends React.Component {
-  
-  handleDelete = (id) => {
-    API.getEmail(id);
+
+  constructor() {
+    super()
+    this.state = {
+      blogPosts : []
+    }
   }
+  
+  handleDelete = id => {
+    console.log(id)
+    API.deletePost(id)
+    //API.getFindLogEmail(_id);
+  }
+
+  
 
   render() {
     
@@ -40,6 +51,9 @@ class BlogPost extends React.Component {
             <Typography variant="subtitle1">
               {this.props.description}
             </Typography>
+            <Typography>
+              {this.props.blogId}
+            </Typography>
             <div>
             <Button
                 variant="contained"
@@ -52,7 +66,7 @@ class BlogPost extends React.Component {
             <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.handleDelete}
+                onClick={() => this.props.handleDelete(this.props.blogId)}
                 className={classes.button}
                 startIcon={<DeleteIcon />}>
             </Button>
