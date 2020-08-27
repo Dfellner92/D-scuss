@@ -1,11 +1,10 @@
 const styles = theme => ({
     main: {
         width: 'auto',
-        display: 'static', // Fix IE 11 issue.
         marginLeft: theme.spacing.unit * 3,
         marginRight: theme.spacing.unit * 3,
-        [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-          width: 400,
+        [theme.breakpoints.up(theme.spacing.unit * 3 * 2)]: {
+          width: '50%',
           marginLeft: 'auto',
           marginRight: 'auto',
         },
@@ -22,6 +21,10 @@ const styles = theme => ({
         '& > *': {
             margin: theme.spacing(1),
           }
+    },
+
+    date: {
+        color: '#787878'
     }
 
 });
