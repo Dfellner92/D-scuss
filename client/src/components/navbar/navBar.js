@@ -25,6 +25,7 @@ class Navbar extends React.Component {
 
     componentDidMount = async () => {
         const status = await JSON.parse(localStorage.getItem("loggedIn"));
+        console.log(status)
         await this.setState({ loggedIn: status })
     }
 

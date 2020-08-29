@@ -27,7 +27,7 @@ class signup extends React.Component {
         };
     }
 
-    
+
 
     render() {
         const { classes } = this.props
@@ -106,31 +106,29 @@ class signup extends React.Component {
         }
 
         firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(authRes => {
-        const userObj = {
-            email: authRes.user.email
-        }
-        console.log(userObj);
-        });
-                
-        API.saveUser({
-            email: this.state.email
-        }).then(res => {
+            .auth()
+            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(authRes => {
+                const userObj = {
+                    email: authRes.user.email
+                }
+                API.saveUser({
+                    email: this.state.email
+                }).then(res => {
+                    localStorage.setItem("loggedIn", true);
+                    this.setState({ signUpSuccessMessage: "successfully registered!" });
 
-        })
-        this.setState({ signUpSuccessMessage: "successfully registered!"});
-        
-        this.props.history.push("/Myprofile/" + this.state.email);
-        
-        console.log(this.state.signUpSuccessMessage);
-        
+                    this.props.history.push("/Myprofile/" + this.state.email);
 
-    }                
+                    console.log(this.state.signUpSuccessMessage);
+                    console.log(userObj);
+                })
+            });
 
-    
+
+
+
+    }
 }
 
 export default withStyles(styles)(signup);
-    
