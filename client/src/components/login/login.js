@@ -23,6 +23,10 @@ class login extends React.Component {
     };
   }
 
+  componentDidMount = async () => {
+    await localStorage.setItem("loggedIn", false)
+  }
+
   render() {
 
     const { classes } = this.props;

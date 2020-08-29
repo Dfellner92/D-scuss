@@ -133,19 +133,4 @@ class signup extends React.Component {
 }
 
 export default withStyles(styles)(signup);
-    //     authErr => {
-    //         console.log('Failed to create user: ', authErr);
-    //         this.setfState({ signupError: 'Failed to add user' });
-    // };
     
-    // firebase
-    //     .firestore()
-    //     .collection("users")
-    //     .doc(this.state.email)
-    //     .set(userObj)
-    //     .then(() => {
-    //         this.props.history.push("/dashboard")
-    //     }, dbErr => {
-    //         console.log('Failed to add user to the database: ', dbErr);
-    //         this.setState({ signupError: 'Failed to add user' });
-    //     });

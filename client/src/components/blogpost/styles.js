@@ -11,6 +11,7 @@ const styles = theme => ({
     },
     paper: {
         marginTop: theme.spacing.unit * 8,
+        marginBottom: theme.spacing.unit * 8,
         display: 'flex',
         flexDirection: 'column',
         // alignItems: 'center',
@@ -25,6 +26,10 @@ const styles = theme => ({
 
     date: {
         color: '#787878'
+    },
+
+    title: {
+        color: "#3F51B5"
     }
 
 });

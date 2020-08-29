@@ -19,74 +19,52 @@ class Myprofile extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         localStorage.setItem("id", id);
-        localStorage.setItem("loggedIn", "yes");
         this.getSavedBlogPosts(id);
-        this.props.getCurrentUserId(id);
     }
-
    
     getSavedBlogPosts = id => {
-        console.log("id:", id)
         API.getSavedBlogPosts(id)
           .then(res => {
-              console.log("DATA:", res.data)
               this.setState({ email: id})
               this.setState({ emailId: res.data[0]._id})
               this.setState({ blogPosts: res.data[0].blogPosts})
-            }).catch(err => console.log(err));
-
-        console.log(this.state.blogPosts)       
+            }).catch(err => console.log(err));   
     };
 
     handleDelete = blogId =>  {
-        //const filteredBlogPosts = this.state.blogPosts.filter(post => post._id !== id)
-        //this.setState({blogPosts : filteredBlogPosts});
-        console.log(blogId, this.state.emailId);
-
-        // if (this.state.blogPosts) {
-        //     this.state.blogPosts.map(
-        //         post => API.deletePost(this.state.email, blogId, this.state.emailId, post._id)
-        //     )} else {
-        //         return                
-        // }
-
-        API.deletePost(this.state.emailId, blogId, this.state.email).then(
-            //this.componentDidMount()
-        )
-
-        
-
+        API.deletePost(this.state.emailId, blogId, this.state.email).then(() => {
+            const id = localStorage.getItem("id")
+            this.getSavedBlogPosts(id)
+        })
     }
 
-    // destructureBlogPosts = () => {
-    //     this.state.blogPosts.map(
-    //         post => {
-    //             post._id
-
-    //         })
-    //         .then()
-    //     )
-    // }
-
-
+    handleEdit = (blogId, emailId, email) =>  {
+        console.log(blogId, emailId, email);
+        API.updatePost(emailId, blogId).then(() => {
+            const id = localStorage.getItem("id")
+            this.getSavedBlogPosts(id)
+        })
+    }
 
     render() {
+
         return(
             <div>
-                <Navbar />
+                <Navbar getSavedBlogPosts={this.getSavedBlogPosts} />
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                {this.state.blogPosts ? this.state.blogPosts.map(post =>
+                {this.state.blogPosts ? this.state.blogPosts.reverse().map(post =>
                     <BlogPost 
                         key={post._id} 
                         title={post.title}
                         date={post.date}
                         description={post.description}
                         blogId={post._id}
+                        email={this.state.email}
                         emailId={this.state.emailId}
-                        handleDelete={this.handleDelete}/>
+                        handleEdit={this.handleEdit}
+                        handleDelete={this.handleDelete}
+                        getSavedBlogPosts={this.getSavedBlogPosts}/>
                     ) : <p></p>
                 }
             </div>

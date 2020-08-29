@@ -6,9 +6,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import API from '../../utils/API';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
 
-export default function ModalForm(props) {
+export default function EditModalForm(props) {
   
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState("");
@@ -16,35 +18,39 @@ export default function ModalForm(props) {
 
   const classes  = props;
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (id) => {
     setOpen(true);
+    setTitle(props.title);
+    setDescription(props.description);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const submitPost = (event) => {
+  const updateSubmit =  async (event, blogId, emailId) => {
     event.preventDefault();
-    const id = localStorage.getItem("id")
-    API.saveBlogPost({
+    const email = localStorage.getItem("id")
+    API.updatePost(emailId, blogId, email, {
       title: title,
-      description: description
-    }, id).then(res => {
+      description: description,
+      _id: blogId
+    }).then(res => {
       setTitle("")
       setDescription("")
       setOpen(false)
-    }).then(() =>
-    classes.getSavedBlogPosts(id));
-  };
+    }).then(res =>
+    (classes.getSavedBlogPosts(email)));
+    await handleClose();
+ };
 
   return (
     <React.Fragment>
-      <Button color="inherit" onClick={handleClickOpen}>
-        New
-      </Button>
+      <IconButton aria-label="edit" color="primary" onClick={() => handleClickOpen(props.blogId)} >
+            <EditIcon />
+      </IconButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">New D'scussion</DialogTitle>
+        <DialogTitle id="form-dialog-title">Edit D'scussion</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -71,11 +77,14 @@ export default function ModalForm(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose, submitPost} color="primary">
-            D'scuss it!
+          <Button onClick={(e) => updateSubmit(e, props.blogId, props.emailId)} color="primary">
+            Update!
           </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
+
   );
+
+
 }

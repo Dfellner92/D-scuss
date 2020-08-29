@@ -7,6 +7,7 @@ import login from "./components/login/login";
 import signup from "./components/signup/signUp";
 import dashboard from "./components/dashboard/dashBoard";
 import Navbar from "./components/navbar/navBar";
+import Footer from "./components/footer/footer";
 import Myprofile from "./components/my-profile/myProfile";
 
 const firebase = require("firebase");
@@ -23,23 +24,24 @@ firebase.initializeApp({
   measurementId: "G-EDS1T47KL7"
 })
 
-let userId;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    localStorage.setItem("loggedIn", true);
+  } else {
+    localStorage.setItem("loggedIn", false);
+  }
+});
 
-const getCurrentUserId = (id) => {
-  console.log(id);
-  userId = id;
-  console.log(userId);
-}
 
 const routing = (
   <Router>
-    
     <div id="routing-container">
-    <Navbar userId = {userId}/>
+    <Navbar />
       <Route exact path="/" component={dashboard}></Route>
       <Route exact path="/signup" component={signup}></Route>
       <Route exact path="/login" component={login}></Route>
-      <Route render={props => <Myprofile {...props} getCurrentUserId={getCurrentUserId}/>} exact path="/Myprofile/:id"></Route>
+      <Route render={props => <Myprofile {...props} />} exact path="/Myprofile/:id"></Route>
+    <Footer />
     </div>
   </Router>
 );
