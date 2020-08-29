@@ -1,9 +1,11 @@
 const styles = theme => ({
+  align: {
+    margin: "center"
+  },
   root: {
     flexGrow: 1,
     position: "fixed",
     width: "100%"
-    // textDecoration: "none"
   },
   menuButton: {
     marginRight: theme.spacing(2),
