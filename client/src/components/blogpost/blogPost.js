@@ -53,6 +53,7 @@ function BlogPost(props) {
   let minute = newTime.slice(3, 5);
   let amPm = "";
   let finalTime = convertedHour + ":" + minute + " " + amPm;
+  console.log(newTime);
 
   if (hour === "15" || hour === "14" || hour === "13" || hour === "12" || hour === "04" || hour === "05" || hour === "06" || hour === "07" || hour === "08" || hour === "09" || hour === "10" || hour === "11") {
     amPm = "am"
