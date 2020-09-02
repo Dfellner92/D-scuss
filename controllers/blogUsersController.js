@@ -59,5 +59,11 @@ module.exports = {
         db.blogUsers.findOneAndUpdate({_id:req.params.emailId}, {blogPosts:unchangedPosts},{new:true})
         .then((dbModel)=>{res.json(dbModel)})
       })
+  },
+  findAllEmails: function(req, res) {
+    db.blogUsers
+      .find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

@@ -28,6 +28,7 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.5",
