@@ -1,4 +1,7 @@
 const styles = theme => ({
+  align: {
+    margin: "center"
+  },
   text: {
     padding: theme.spacing(2, 2, 0)
   },
@@ -18,12 +21,20 @@ const styles = theme => ({
   grow: {
     flexGrow: 1
   },
-  copywrite: {
+  content: {
     justifyContent: "center",
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 1}px ${theme.spacing.unit * 1}px`,
+    padding: `${theme.spacing.unit * 0.5}px ${theme.spacing.unit * 0.5}px ${theme.spacing.unit * 0.5}px`,
+  },
+  copywrite: {
+    margin: "center",
+    fontSize: "9px",
+    justifyContent: "center",
+    display: 'inline'
+
+
   }
 });
 

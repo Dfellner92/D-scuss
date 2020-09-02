@@ -5,12 +5,11 @@ export default {
   getUsers: function() {
     return axios.get("/api/blogUsers");
   },
-  // Gets the book with the given id
+  getUserEmails: function() {
+    return axios.get("/api/blogUsers/suggestions")
+  },
   getSavedBlogPosts: function(id) {
     return axios.get("/api/blogUsers/"+ id);
-  },
-  getFindLogEmail: function(id) {
-    return axios.get("/api/blogUsersDelete/" + id)
   },
   saveBlogPost: function(post, id) {
     return axios.post("/api/blogPosts/" + id, post)

@@ -1,6 +1,21 @@
 const styles = theme => ({
   align: {
-    margin: "center"
+    width: "79%",
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  AppBar: {
+    height: "70px"
+  },
+  inputField: {
+    width: "25%",
+    padding: "0px !important"
+
+  },
+  textField: {
+    backgroundColor: "white",
+    padding: "0px !important"
+
   },
   root: {
     flexGrow: 1,
@@ -12,6 +27,9 @@ const styles = theme => ({
   },
   title: {
     flexGrow: 1,
+  },
+  li: {
+    zIndex: "100",
   }
 });
 

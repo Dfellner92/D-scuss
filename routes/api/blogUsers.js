@@ -4,7 +4,9 @@ const blogUsersController = require("../../controllers/blogUsersController");
 router.route("/")
   .get(blogUsersController.findAll)
   .post(blogUsersController.create)
-  
+
+router.route("/suggestions")
+  .get(blogUsersController.findAllEmails)
   
 router.route("/:email")
   .get(blogUsersController.findAll)
