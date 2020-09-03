@@ -8,9 +8,8 @@ import Link from '@material-ui/core/Link';
 import styles from "./styles";
 import ModalForm from "../modal/modal";
 import API from "../../utils/API";
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
-import "./paddingStyle.css";
+import InputBase from '@material-ui/core/InputBase';
+
 
 
 const firebase = require("firebase");
@@ -20,7 +19,8 @@ class Navbar extends React.Component {
         super();
         this.state = {
             loggedIn: false,
-            emails: []
+            emails: [],
+            emailSearched: ""
         };
     }
 
@@ -56,9 +56,17 @@ class Navbar extends React.Component {
         )
     }
 
-    goToOtherProfile = () => {
-        const key = document.getElementById("searchIT").value
-        console.log(key);
+    goToOtherProfile = async (event) => {
+        await this.setState({
+            emailSearched: event.target.value
+        })
+        console.log(this.state.emailSearched)
+
+    }
+
+    goToOtherProfile2 = () => {
+        console.log(this.state.emailSearched)
+
     }
 
     signOut = () => {
@@ -83,21 +91,19 @@ class Navbar extends React.Component {
 
                         {this.state.loggedIn ?
                             <div className={classes.align}>
-                                <Autocomplete
-                                    className={classes.inputField}
-                                    freeSolo
-                                    id="searchIT"
-                                    options={this.state.emails}
-                                    renderInput={(params) => (
-                                        <TextField
-                                            {...params}
-                                            color="primary"
-                                            className={classes.textField}
-                                            InputProps={{ ...params.InputProps, type: 'search' }}
-                                        />)}
-                                />
+                                <div className={classes.search}>
+                                    <InputBase
+                                        placeholder="Search…"
+                                        onChange={this.goToOtherProfile}
+                                        classes={{
+                                            root: classes.inputRoot,
+                                            input: classes.inputInput,
+                                        }}
+                                        inputProps={{ 'aria-label': 'search' }}
+                                    />
+                                </div>
                                 <Button color="inherit">
-                                    <Link underline="none" color="inherit" onClick={this.goToOtherProfile} >Search</Link>
+                                    <Link underline="none" color="inherit" href={`/Otherprofile/${this.state.emailSearched}`} onClick={this.goToOtherProfile2}>Go!</Link>
                                 </Button>
                                 <Button color="inherit">
                                     <Link underline="none" color="inherit" href={`/Myprofile/${email}`}>Home</Link>

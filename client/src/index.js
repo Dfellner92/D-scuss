@@ -9,6 +9,7 @@ import dashboard from "./components/dashboard/dashBoard";
 import Navbar from "./components/navbar/navBar";
 import Footer from "./components/footer/footer";
 import Myprofile from "./components/my-profile/myProfile";
+import Otherprofile from "./components/other-profile/otherProfile";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -40,6 +41,7 @@ const routing = (
       <Route exact path="/" component={dashboard}></Route>
       <Route exact path="/signup" component={signup}></Route>
       <Route exact path="/login" component={login}></Route>
+      <Route render={props => <Otherprofile {...props} />} exact path="/Otherprofile/:otherId/"></Route>
       <Route render={props => <Myprofile {...props} />} exact path="/Myprofile/:id/"></Route>
     <Footer />
     </div>

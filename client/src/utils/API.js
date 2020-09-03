@@ -11,6 +11,9 @@ export default {
   getSavedBlogPosts: function(id) {
     return axios.get("/api/blogUsers/"+ id);
   },
+  getOtherSavedBlogPosts: function(otherId) {
+    return  axios.get("/api/blogUsers/" + otherId)
+  },
   saveBlogPost: function(post, id) {
     return axios.post("/api/blogPosts/" + id, post)
   },
